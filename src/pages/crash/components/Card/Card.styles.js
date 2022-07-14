@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const Container = styled.div`
+  cursor: pointer;
   width: 205px;
   height: 70px;
   border-radius: 10px;
@@ -12,6 +13,10 @@ const Container = styled.div`
   font-weight: bold;
   border: 1px solid rgba(0,0,0,0.1);
   box-sizing: border-box;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 `;
 
 const Date = styled.div`
