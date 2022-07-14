@@ -1,8 +1,10 @@
+import CrashPage from "./pages/crash/Crash";
+
 function App() {
   return (
-    <div>
-      Blaze Crash
-    </div>
+    <>
+      <CrashPage />
+    </>
   );
 }
 
