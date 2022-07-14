@@ -22,8 +22,8 @@ export default function CrashPage() {
       <h1>Blaze Crash</h1>
       <Page.Flex>
         {!crashes?.length && (<Loader />)}
-        {crashes.map((el) => (
-          <Card data={el} />
+        {crashes.map((el, index) => (
+          <Card key={`${index}_Card`} data={el} id={crashes?.length - index} />
         ))}
       </Page.Flex>
     </Page.Container>
