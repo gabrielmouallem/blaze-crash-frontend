@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../axios/axios";
-import { useEffectOnce } from '../hooks/useEffectOnce'; 
-import socket from '../socket/socket';
+import { useEffectOnce } from "../hooks/useEffectOnce";
+import socket from "../socket/socket";
 
 export default function useCrashes() {
   const [crashes, setCrashes] = useState([]);
@@ -17,13 +17,13 @@ export default function useCrashes() {
     socket.on("crash", (data) => {
       const props = {
         motion: {
-          initial: {width: 0, scale: 0},
-          animate: {width: "205px", scale: 1}
-        }
+          initial: { scale: 0 },
+          animate: { scale: 1 },
+        },
       };
-      setCrashes(prevState => {
-        const newCrash = {...data, ...props};
-        const previousCrash = {...prevState?.[0]};
+      setCrashes((prevState) => {
+        const newCrash = { ...data, ...props };
+        const previousCrash = { ...prevState?.[0] };
         delete previousCrash.motion;
         const result = prevState.slice(1);
         return [newCrash, previousCrash, ...result];
@@ -34,5 +34,6 @@ export default function useCrashes() {
   return {
     getCrashes,
     crashes,
+    length: crashes?.length
   };
 }

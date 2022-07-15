@@ -4,17 +4,16 @@ import {motion} from 'framer-motion'
 const Container = styled(motion.div)`
   position: relative;
   cursor: pointer;
-  width: 205px;
-  height: 70px;
+  width: 100px;
   border-radius: 10px;
-  margin: 1rem 0.25rem;
+  margin: 0.75rem 0.25rem;
   padding: 1rem;
-  background-color: ${props => (props.green ? 'rgb(96, 209, 132)' : 'rgb(53, 61, 74)')};
-  background-color: ${props => (props.green ? 'rgb(96, 209, 132)' : 'rgb(53, 61, 74)')};
-  color: ${props => (props.green ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)')};
+  background-color: ${props => props.colors.background};
+  color: ${props => props.colors.text};
   font-weight: bold;
   border: 1px solid rgb(17, 25, 34);
   box-sizing: border-box;
+  text-align: center;
 
   &:hover {
     filter: brightness(0.8);
@@ -23,17 +22,17 @@ const Container = styled(motion.div)`
 
 const Id = styled.div`
   position: absolute;
-  width: 60px;
+  width: 50px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  bottom: 57px;
+  bottom: 55px;
   text-align: center;
-  background-color: rgba(17, 25, 34);
-  padding: 5px;
+  background-color: rgb(28, 36, 44);
+  padding: 3px 5px;
   border-radius: 5px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: rgba(255,255,255,0.7);
 `;
 
