@@ -24,7 +24,7 @@ export default function CrashPage() {
         <div>Total de cinzas: {low ? stats.gray : stats.medium}</div>
         {low && <div>Total de vermelhos: {stats.low}</div>}
         <br></br>
-        <div>Dados coletados desde o dia: {startDate}</div>
+        <div><small>Dados coletados desde o dia: {startDate}</small></div>
       </Page.FormWrapper>
       <Page.Flex>
         {!length && <Loader />}
