@@ -10,16 +10,16 @@ export default function CrashPage() {
   const memoizedCrashes = useMemo(() => {
     if (!crashes) return [];
     return crashes?.slice(0, 1000);
-  }, [crashes])
+  }, [crashes]);
 
   return (
     <Page.Container>
       <h1>Blaze Crash</h1>
       <Page.Flex>
         {!memoizedCrashes?.length && (<Loader />)}
-        {memoizedCrashes?.map((el, index) => (
-          <Card key={`${index}_Card`} data={el} id={crashes?.length - index} />
-        ))}
+        {memoizedCrashes?.map((el, index) => {
+          return <Card key={`${index}_Card`} data={el} id={crashes?.length - index} />
+        })}
       </Page.Flex>
     </Page.Container>
   );
