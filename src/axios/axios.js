@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://blaze-crash-backend.herokuapp.com',
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 240000, // 60 seconds
 });
 

@@ -6,8 +6,6 @@ export default function Card(props) {
 
   const { id } = props;
 
-  console.log({ props });
-
   const date = new Date(_date).toLocaleString();
 
   return (
