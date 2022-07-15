@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import {motion} from 'framer-motion'
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   cursor: pointer;
   width: 205px;
