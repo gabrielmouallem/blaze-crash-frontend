@@ -34,6 +34,13 @@ export default function useCrashes() {
   return {
     getCrashes,
     crashes,
-    length: crashes?.length
+    length: crashes?.length,
+    stats: {
+      high: crashes?.filter(el => el.value >= 2)?.length,
+      gray: crashes?.filter(el => el.value < 2 && el.value >= 1.1)?.length,
+      medium: crashes?.filter(el => el.value < 2)?.length,
+      low: crashes?.filter(el => el.value < 1.1)?.length,
+    },
+    startDate: new Date(crashes?.[0]?.date).toLocaleDateString()
   };
 }

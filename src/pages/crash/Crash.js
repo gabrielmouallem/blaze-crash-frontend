@@ -6,7 +6,7 @@ import Form from "./components/Form/Form";
 import Page from "./Crash.styles";
 
 export default function CrashPage() {
-  const { crashes: _crashes, length } = useCrashes();
+  const { crashes: _crashes, length, stats, startDate } = useCrashes();
   const [low, setLow] = useState(localStorage.getItem("low") === "true");
 
   const crashes = [..._crashes].slice(0, 500);
@@ -17,7 +17,14 @@ export default function CrashPage() {
     <Page.Container key={`${length}_CrashesPage`}>
       <h1>Blaze Crash</h1>
       <Page.FormWrapper>
-        <Form onForm={onForm} data={{low}} />
+        <Form onForm={onForm} data={{ low }} />
+        <br></br>
+        <br></br>
+        <div>Total de verdes: {stats.high}</div>
+        <div>Total de cinzas: {low ? stats.gray : stats.medium}</div>
+        {low && <div>Total de vermelhos: {stats.low}</div>}
+        <br></br>
+        <div>Dados coletados desde o dia: {startDate}</div>
       </Page.FormWrapper>
       <Page.Flex>
         {!length && <Loader />}
