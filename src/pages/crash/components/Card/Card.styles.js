@@ -7,7 +7,7 @@ const Container = styled(motion.div)`
   width: 205px;
   height: 70px;
   border-radius: 10px;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
   background-color: ${props => (props.green ? 'rgb(96, 209, 132)' : 'rgb(53, 61, 74)')};
   background-color: ${props => (props.green ? 'rgb(96, 209, 132)' : 'rgb(53, 61, 74)')};
