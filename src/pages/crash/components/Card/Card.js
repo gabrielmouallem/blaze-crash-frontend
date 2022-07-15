@@ -1,34 +1,50 @@
-import React from "react";
+import React, { useMemo } from "react";
+import {
+  GRAY_CARD_STYLE,
+  GREEN_CARD_STYLE,
+  RED_CARD_STYLE,
+} from "../../../../constants/constants";
 import CrashCard from "./Card.styles";
 
 function Card(props) {
-  const { date: _date, value } = props.data;
+  const { date, value } = props.data;
 
-  const { id, low } = props;
+  const { id, showRed, showColors } = props;
 
-  const date = new Date(_date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  const formattedDate = new Date(date).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-  const styles = {
-    text: "rgba(255,255,255,0.7)",
-    background: "rgb(53, 61, 74)"
-  }
+  const styles = useMemo(() => {
+    if (value >= 2) {
+      return GREEN_CARD_STYLE;
+    } else if (value < 1.1) {
+      if (showRed) return RED_CARD_STYLE;
+      return GRAY_CARD_STYLE;
+    } else if (value >= 1.1 && value <= 2) {
+      return GRAY_CARD_STYLE;
+    }
+  }, [value, showRed]);
 
   if (value >= 2) {
-    styles.text = "rgba(0,0,0,0.7)";
-    styles.background = "rgb(96, 209, 132)";
-  } else if (value < 1.1 && low) {
-    styles.text = "rgba(255,255,255,0.7)";
-    styles.background = "rgb(221, 65, 81)";
+    if (!showColors.includes("green")) return <></>;
+  } else if (value < 1.1) {
+    if (showRed) {
+      if (!showColors.includes("red")) return <></>;
+    }
+  } else if (value >= 1.1 && value <= 2) {
+    if (!showColors.includes("gray")) return <></>;
   }
 
   return (
     <CrashCard.Container
       {...props.data?.motion}
-      title={date}
+      title={formattedDate}
       colors={styles}
     >
       <CrashCard.Id>{id}</CrashCard.Id>
-      <CrashCard.Date>{date}</CrashCard.Date>
+      <CrashCard.Date>{formattedDate}</CrashCard.Date>
       <div>{value}X</div>
     </CrashCard.Container>
   );

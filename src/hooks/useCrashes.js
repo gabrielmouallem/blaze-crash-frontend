@@ -1,10 +1,32 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import api from "../axios/axios";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import socket from "../socket/socket";
 
 export default function useCrashes() {
   const [crashes, setCrashes] = useState([]);
+
+  const length = useMemo(() => crashes?.length, [crashes?.length]);
+
+  const stats = useMemo(
+    () => ({
+      green: crashes?.filter((el) => el.value >= 2)?.length,
+      gray_no_red: crashes?.filter((el) => el.value < 2 && el.value >= 1.1)?.length,
+      gray_with_red: crashes?.filter((el) => el.value < 2)?.length,
+      red: crashes?.filter((el) => el.value < 1.1)?.length,
+    }),
+    [crashes]
+  );
+
+  const startDate = useMemo(
+    () => new Date(crashes?.at(-1)?.date).toLocaleDateString(),
+    [crashes]
+  );
+
+  const endDate = useMemo(
+    () => new Date(crashes?.[0]?.date).toLocaleDateString(),
+    [crashes]
+  )
 
   const getCrashes = () => {
     api.get("/crash").then((res) => {
@@ -34,13 +56,9 @@ export default function useCrashes() {
   return {
     getCrashes,
     crashes,
-    length: crashes?.length,
-    stats: {
-      high: crashes?.filter(el => el.value >= 2)?.length,
-      gray: crashes?.filter(el => el.value < 2 && el.value >= 1.1)?.length,
-      medium: crashes?.filter(el => el.value < 2)?.length,
-      low: crashes?.filter(el => el.value < 1.1)?.length,
-    },
-    startDate: new Date(crashes?.[0]?.date).toLocaleDateString()
+    length,
+    stats,
+    startDate,
+    endDate,
   };
 }
