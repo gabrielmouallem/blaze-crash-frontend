@@ -4,7 +4,7 @@ import CrashCard from "./Card.styles";
 function Card(props) {
   const { date: _date, value } = props.data;
 
-  const { id } = props;
+  const { id, low } = props;
 
   const date = new Date(_date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
@@ -16,7 +16,7 @@ function Card(props) {
   if (value >= 2) {
     styles.text = "rgba(0,0,0,0.7)";
     styles.background = "rgb(96, 209, 132)";
-  } else if (value < 1.1) {
+  } else if (value < 1.1 && low) {
     styles.text = "rgba(255,255,255,0.7)";
     styles.background = "rgb(221, 65, 81)";
   }

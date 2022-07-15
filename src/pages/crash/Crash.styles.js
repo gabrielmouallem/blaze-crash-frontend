@@ -6,6 +6,10 @@ const Container = styled.div`
   }
 `;
 
+const FormWrapper = styled.div`
+  margin: 1rem 1rem 3rem 1rem;
+`;
+
 const Flex = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -14,6 +18,7 @@ const Flex = styled.div`
 
 const Page = {
   Container,
+  FormWrapper,
   Flex,
 };
 
