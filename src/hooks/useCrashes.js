@@ -15,7 +15,19 @@ export default function useCrashes() {
   useEffectOnce(() => {
     getCrashes();
     socket.on("crash", (data) => {
-      setCrashes(prevState => [data, ...prevState]);
+      const props = {
+        motion: {
+          initial: {width: 0, scale: 0},
+          animate: {width: "205px", scale: 1}
+        }
+      };
+      setCrashes(prevState => {
+        const newCrash = {...data, ...props};
+        const previousCrash = {...prevState?.[0]};
+        delete previousCrash.motion;
+        const result = prevState.slice(1);
+        return [newCrash, previousCrash, ...result];
+      });
     });
   }, []);
 

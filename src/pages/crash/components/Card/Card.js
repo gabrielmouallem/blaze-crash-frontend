@@ -1,7 +1,7 @@
 import React from "react";
 import CrashCard from "./Card.styles";
 
-export default function Card(props) {
+function Card(props) {
   const { date: _date, value } = props.data;
 
   const { id } = props;
@@ -10,6 +10,7 @@ export default function Card(props) {
 
   return (
     <CrashCard.Container
+      {...props.data?.motion}
       title={date}
       green={value >= 2}
     >
@@ -19,3 +20,5 @@ export default function Card(props) {
     </CrashCard.Container>
   );
 }
+
+export default React.memo(Card);

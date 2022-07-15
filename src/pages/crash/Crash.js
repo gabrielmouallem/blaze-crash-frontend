@@ -8,7 +8,7 @@ export default function CrashPage() {
   const { crashes } = useCrashes();
 
   return (
-    <Page.Container>
+    <Page.Container key={`${crashes?.length}_CrashesPage`}>
       <h1>Blaze Crash</h1>
       <Page.Flex>
         {!crashes?.length && (<Loader />)}
